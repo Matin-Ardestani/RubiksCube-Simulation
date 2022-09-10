@@ -101,9 +101,9 @@ def R_move(x):
 
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgYpositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgZpositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
-    for CorBallancePos, CorChangePos, EdgYpos, EdgZpos in zip(CorBallancePositions, CorChangePositions, EdgYpositions, EdgZpositions): # all list lengths are 90 Bcause of rotatins
+    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
+    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
+    for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
         CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
@@ -119,13 +119,13 @@ def R_move(x):
         Cor7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Edge moves
-        Edg2.pos = vector(1+dis, EdgZpos, -EdgYpos)
+        Edg2.pos = vector(1+dis, EdgDecPos, -EdgIncPos)
         Edg2.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Edg5.pos = vector(1+dis, EdgYpos, EdgZpos)
+        Edg5.pos = vector(1+dis, EdgIncPos, EdgDecPos)
         Edg5.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Edg7.pos = vector(1+dis, -EdgYpos, -EdgZpos)
+        Edg7.pos = vector(1+dis, -EdgIncPos, -EdgDecPos)
         Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Edg10.pos = vector(1+dis, -EdgZpos, EdgYpos)
+        Edg10.pos = vector(1+dis, -EdgDecPos, EdgIncPos)
         Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
 
