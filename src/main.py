@@ -74,14 +74,20 @@ CenR.size , CenR.pos = cubySize, vector(1+dis,0,0)
 Cor1 = compound(cubePyramids)
 Cor1.size, Cor1.pos = cubySize, vector(1+dis,1+dis,1+dis)
 Cor3 = compound(cubePyramids)
-Cor3.size, Cor3.pos = cubySize, vector(1+dis,1+dis,-1+dis)
+Cor3.size, Cor3.pos = cubySize, vector(1+dis,1+dis,-1-dis)
 Cor5 = compound(cubePyramids)
 Cor5.size, Cor5.pos = cubySize, vector(1+dis,-1-dis,1+dis)
 Cor7 = compound(cubePyramids)
 Cor7.size, Cor7.pos = cubySize, vector(1+dis,-1-dis,-1-dis)
 
+Edg2 = compound(cubePyramids)
+Edg2.size, Edg2.pos = cubySize, vector(1+dis,1+dis,0)
 Edg5 = compound(cubePyramids)
 Edg5.size, Edg5.pos = cubySize, vector(1+dis,0,1+dis)
+Edg7 = compound(cubePyramids)
+Edg7.size, Edg7.pos = cubySize, vector(1+dis,0,-1-dis)
+Edg10 = compound(cubePyramids)
+Edg10.size, Edg10.pos = cubySize, vector(1+dis,-1-dis,0)
 
 
 
@@ -113,8 +119,14 @@ def R_move(x):
         Cor7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Edge moves
+        Edg2.pos = vector(1+dis, EdgZpos, -EdgYpos)
+        Edg2.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
         Edg5.pos = vector(1+dis, EdgYpos, EdgZpos)
         Edg5.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Edg7.pos = vector(1+dis, -EdgYpos, -EdgZpos)
+        Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Edg10.pos = vector(1+dis, -EdgZpos, EdgYpos)
+        Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
 
         
