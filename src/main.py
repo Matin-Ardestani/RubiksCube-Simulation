@@ -93,23 +93,23 @@ def convert_to_radius(degree):
 
 def R_move(x):
 
-    CorYpositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorZpositions = np.linspace(1+dis, -1-dis, 90)
+    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgYpositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
     EdgZpositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
-    for CorYpos, CorZpos, EdgYpos, EdgZpos in zip(CorYpositions, CorZpositions, EdgYpositions, EdgZpositions): # all list lengths are 90 Bcause of rotatins
+    for CorBallancePos, CorChangePos, EdgYpos, EdgZpos in zip(CorBallancePositions, CorChangePositions, EdgYpositions, EdgZpositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
         CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
-        # Corners moves
-        Cor1.pos = vector(1+dis, CorYpos, CorZpos)
+        # Corners moves2
+        Cor1.pos = vector(1+dis, CorBallancePos, CorChangePos)
         Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Cor3.pos = vector(1+dis, CorZpos, -CorYpos)
+        Cor3.pos = vector(1+dis, CorChangePos, -CorBallancePos)
         Cor3.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Cor5.pos = vector(1+dis, -CorZpos, CorYpos)
+        Cor5.pos = vector(1+dis, -CorChangePos, CorBallancePos)
         Cor5.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Cor7.pos = vector(1+dis, -CorYpos, -CorZpos)
+        Cor7.pos = vector(1+dis, -CorBallancePos, -CorChangePos)
         Cor7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Edge moves
