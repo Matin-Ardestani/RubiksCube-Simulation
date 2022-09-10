@@ -18,12 +18,12 @@ backZarrow = arrow(axis=vector(0,0,-1), length=arrowLength, shaftwidth=arrowThic
 #cubies names
 '''
 centers = {
-  Cen1 : white center
-  Cen2 : yellow center
-  Cen3 : green center
-  Cen4 : blue center
-  Cen5 : red center
-  Cen6 : orange center
+  CenW : white center
+  CenY : yellow center
+  CenG : green center
+  CenB : blue center
+  CenR : red center
+  CenO : orange center
 }
 
 corners = {
@@ -53,6 +53,10 @@ edges = {
 }
 '''
 
+# Global variables
+cubySize = vector(1,1,1)
+
+# Creatin cubes using 6 pyramids with 6 different colors
 cubePyramids = [
     pyramid(size=vector(0.5,1,1), pos=vector(0,0.5,0), axis=vector(0,-1,0), color=color.white),
     pyramid(size=vector(0.5,1,1), pos=vector(0,-0.5,0), axis=vector(0,1,0), color=color.yellow),
@@ -61,6 +65,37 @@ cubePyramids = [
     pyramid(size=vector(0.5,1,1), pos=vector(0,0,0.5), axis=vector(0,0,-1), color=color.green),
     pyramid(size=vector(0.5,1,1), pos=vector(0,0,-0.5), axis=vector(0,0,1), color=color.blue)
 ]
+
+# Right side
+CenR = compound(cubePyramids)
+CenR.size , CenR.pos = cubySize, vector(1,0,0)
+
+Cor1 = compound(cubePyramids)
+Cor1.size, Cor1.pos = cubySize, vector(1,1,1)
+
+
+
+
+# ===================================Moves=====================================================
+# Convert degree to radian
+def convert_to_radius(degree):
+    return degree * (np.pi / 180)
+
+def R_move(x):
+    Ypositions = list(np.linspace(1, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1, 45))
+    Zpositions = np.linspace(1, -1, 90)
+    for corYpos, CorZpos in zip(Ypositions, Zpositions):
+        rate(150)
+        # Center move
+        CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+
+        # Corners moves
+        Cor1.pos = vector(1, corYpos, CorZpos)
+        Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+       
+
+button(bind=R_move, text="  R  ", background=color.red, color=color.black)
+
 
 
 while True:
