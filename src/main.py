@@ -4,7 +4,7 @@ from vpython import *
 import numpy as np
 
 # Creating arrows to show axises
-arrowLength = 1.5
+arrowLength = 1.52
 arrowThickness = .03
 rightXarrow = arrow(axis=vector(1,0,0), length=arrowLength, shaftwidth=arrowThickness)
 leftXarrow = arrow(axis=vector(-1,0,0), length=arrowLength, shaftwidth=arrowThickness)
@@ -55,6 +55,7 @@ edges = {
 
 # Global variables
 cubySize = vector(1,1,1)
+dis = .01 # distant size
 
 # Creatin cubes using 6 pyramids with 6 different colors
 cubePyramids = [
@@ -68,10 +69,13 @@ cubePyramids = [
 
 # Right side
 CenR = compound(cubePyramids)
-CenR.size , CenR.pos = cubySize, vector(1,0,0)
+CenR.size , CenR.pos = cubySize, vector(1+dis,0,0)
 
 Cor1 = compound(cubePyramids)
-Cor1.size, Cor1.pos = cubySize, vector(1,1,1)
+Cor1.size, Cor1.pos = cubySize, vector(1+dis,1+dis,1+dis)
+
+Edg5 = compound(cubePyramids)
+Edg5.size, Edg5.pos = cubySize, vector(1+dis,0,1+dis)
 
 
 
@@ -82,16 +86,26 @@ def convert_to_radius(degree):
     return degree * (np.pi / 180)
 
 def R_move(x):
-    Ypositions = list(np.linspace(1, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1, 45))
-    Zpositions = np.linspace(1, -1, 90)
-    for corYpos, CorZpos in zip(Ypositions, Zpositions):
+
+    CorYpositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+    CorZpositions = np.linspace(1+dis, -1-dis, 90)
+    EdgYpositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
+    EdgZpositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
+    for CorYpos, CorZpos, EdgYpos, EdgZpos in zip(CorYpositions, CorZpositions, EdgYpositions, EdgZpositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
         CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Corners moves
-        Cor1.pos = vector(1, corYpos, CorZpos)
+        Cor1.pos = vector(1+dis, CorYpos, CorZpos)
         Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+
+        # Edge moves
+        Edg5.pos = vector(1+dis, EdgYpos, EdgZpos)
+        Edg5.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+
+
+        
        
 
 button(bind=R_move, text="  R  ", background=color.red, color=color.black)
