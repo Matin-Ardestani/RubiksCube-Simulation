@@ -1,5 +1,5 @@
 # Importing neeeded packages
-from tkinter import Y
+from calendar import c
 from vpython import *
 import numpy as np
 
@@ -91,6 +91,14 @@ Edg10.size, Edg10.pos = cubySize, vector(1+dis,-1-dis,0)
 
 
 
+# Positions names & dictionary
+Positions = {
+    'C1' : Cor1,
+    'C3' : Cor3,
+    'C5' : Cor5,
+    'C7' : Cor7
+}
+
 
 # ===================================Moves=====================================================
 # Convert degree to radian
@@ -108,14 +116,14 @@ def R_move(x):
         CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Corners moves
-        Cor1.pos = vector(1+dis, CorBallancePos, CorChangePos)
-        Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Cor3.pos = vector(1+dis, CorChangePos, -CorBallancePos)
-        Cor3.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Cor5.pos = vector(1+dis, -CorChangePos, CorBallancePos)
-        Cor5.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Cor7.pos = vector(1+dis, -CorBallancePos, -CorChangePos)
-        Cor7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C1'].pos = vector(1+dis, CorBallancePos, CorChangePos)
+        Positions['C1'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C3'].pos = vector(1+dis, CorChangePos, -CorBallancePos)
+        Positions['C3'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C5'].pos = vector(1+dis, -CorChangePos, CorBallancePos)
+        Positions['C5'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C7'].pos = vector(1+dis, -CorBallancePos, -CorChangePos)
+        Positions['C7'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Edge moves
         Edg2.pos = vector(1+dis, EdgDecPos, -EdgIncPos)
@@ -126,6 +134,12 @@ def R_move(x):
         Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
         Edg10.pos = vector(1+dis, -EdgDecPos, EdgIncPos)
         Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+    
+    # Change cubies positions
+    Positions['C1'] = Cor5
+    Positions['C3'] = Cor1
+    Positions['C5'] = Cor7
+    Positions['C7'] = Cor3
 
 def Rpr_move(x):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
@@ -138,14 +152,14 @@ def Rpr_move(x):
         CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
 
         # Corners moves
-        Cor1.pos = vector(1+dis, CorChangePos, CorBallancePos)
-        Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
-        Cor3.pos = vector(1+dis, CorBallancePos, -CorChangePos)
-        Cor3.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
-        Cor5.pos = vector(1+dis, -CorBallancePos, CorChangePos)
-        Cor5.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
-        Cor7.pos = vector(1+dis, -CorChangePos, -CorBallancePos)
-        Cor7.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C1'].pos = vector(1+dis, CorChangePos, CorBallancePos)
+        Positions['C1'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C3'].pos = vector(1+dis, CorBallancePos, -CorChangePos)
+        Positions['C3'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C5'].pos = vector(1+dis, -CorBallancePos, CorChangePos)
+        Positions['C5'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C7'].pos = vector(1+dis, -CorChangePos, -CorBallancePos)
+        Positions['C7'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
 
         # # Edge moves
         Edg2.pos = vector(1+dis, EdgDecPos, EdgIncPos)
@@ -156,6 +170,12 @@ def Rpr_move(x):
         Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
         Edg10.pos = vector(1+dis, -EdgDecPos, -EdgIncPos)
         Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+
+    # Change cubies positions
+    Positions['C1'] = Cor3
+    Positions['C3'] = Cor7
+    Positions['C5'] = Cor1
+    Positions['C7'] = Cor5
         
        
 
