@@ -98,7 +98,6 @@ def convert_to_radius(degree):
     return degree * (np.pi / 180)
 
 def R_move(x):
-
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -108,7 +107,7 @@ def R_move(x):
         # Center move
         CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
-        # Corners moves2
+        # Corners moves
         Cor1.pos = vector(1+dis, CorBallancePos, CorChangePos)
         Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
         Cor3.pos = vector(1+dis, CorChangePos, -CorBallancePos)
@@ -128,12 +127,42 @@ def R_move(x):
         Edg10.pos = vector(1+dis, -EdgDecPos, EdgIncPos)
         Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
+def Rpr_move(x):
+    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
+    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
+    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
+    for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
+        rate(150)
+        # Center move
+        CenR.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
 
+        # Corners moves
+        Cor1.pos = vector(1+dis, CorChangePos, CorBallancePos)
+        Cor1.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Cor3.pos = vector(1+dis, CorBallancePos, -CorChangePos)
+        Cor3.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Cor5.pos = vector(1+dis, -CorBallancePos, CorChangePos)
+        Cor5.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Cor7.pos = vector(1+dis, -CorChangePos, -CorBallancePos)
+        Cor7.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+
+        # # Edge moves
+        Edg2.pos = vector(1+dis, EdgDecPos, EdgIncPos)
+        Edg2.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Edg5.pos = vector(1+dis, -EdgIncPos, EdgDecPos)
+        Edg5.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Edg7.pos = vector(1+dis, EdgIncPos, -EdgDecPos)
+        Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Edg10.pos = vector(1+dis, -EdgDecPos, -EdgIncPos)
+        Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
         
        
 
+# Button widgets
 button(bind=R_move, text="  R  ", background=color.red, color=color.black)
-
+scene.append_to_caption('\t')
+button(bind=Rpr_move, text="  R'  ", background=color.red, color=color.black)
 
 
 while True:
