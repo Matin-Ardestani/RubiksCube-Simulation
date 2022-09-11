@@ -96,7 +96,12 @@ Positions = {
     'C1' : Cor1,
     'C3' : Cor3,
     'C5' : Cor5,
-    'C7' : Cor7
+    'C7' : Cor7,
+
+    'E2' : Edg2,
+    'E5' : Edg5,
+    'E7' : Edg7,
+    'E10' : Edg10
 }
 
 
@@ -126,20 +131,25 @@ def R_move(x):
         Positions['C7'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
 
         # Edge moves
-        Edg2.pos = vector(1+dis, EdgDecPos, -EdgIncPos)
-        Edg2.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Edg5.pos = vector(1+dis, EdgIncPos, EdgDecPos)
-        Edg5.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Edg7.pos = vector(1+dis, -EdgIncPos, -EdgDecPos)
-        Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
-        Edg10.pos = vector(1+dis, -EdgDecPos, EdgIncPos)
-        Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E2'].pos = vector(1+dis, EdgDecPos, -EdgIncPos)
+        Positions['E2'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E5'].pos = vector(1+dis, EdgIncPos, EdgDecPos)
+        Positions['E5'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E7'].pos = vector(1+dis, -EdgIncPos, -EdgDecPos)
+        Positions['E7'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E10'].pos = vector(1+dis, -EdgDecPos, EdgIncPos)
+        Positions['E10'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
     
     # Change cubies positions
     Positions['C1'] = Cor5
     Positions['C3'] = Cor1
     Positions['C5'] = Cor7
     Positions['C7'] = Cor3
+
+    Positions['E2'] = Edg5
+    Positions['E5'] = Edg10
+    Positions['E7'] = Edg2
+    Positions['E10'] = Edg7
 
 def Rpr_move(x):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
@@ -162,20 +172,25 @@ def Rpr_move(x):
         Positions['C7'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
 
         # # Edge moves
-        Edg2.pos = vector(1+dis, EdgDecPos, EdgIncPos)
-        Edg2.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
-        Edg5.pos = vector(1+dis, -EdgIncPos, EdgDecPos)
-        Edg5.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
-        Edg7.pos = vector(1+dis, EdgIncPos, -EdgDecPos)
-        Edg7.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
-        Edg10.pos = vector(1+dis, -EdgDecPos, -EdgIncPos)
-        Edg10.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E2'].pos = vector(1+dis, EdgDecPos, EdgIncPos)
+        Positions['E2'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E5'].pos = vector(1+dis, -EdgIncPos, EdgDecPos)
+        Positions['E5'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E7'].pos = vector(1+dis, EdgIncPos, -EdgDecPos)
+        Positions['E7'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E10'].pos = vector(1+dis, -EdgDecPos, -EdgIncPos)
+        Positions['E10'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
 
     # Change cubies positions
     Positions['C1'] = Cor3
     Positions['C3'] = Cor7
     Positions['C5'] = Cor1
     Positions['C7'] = Cor5
+
+    Positions['E2'] = Edg7
+    Positions['E5'] = Edg2
+    Positions['E7'] = Edg10
+    Positions['E10'] = Edg5
         
        
 
