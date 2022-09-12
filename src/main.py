@@ -141,15 +141,9 @@ def R_move(x):
         Positions['E10'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
     
     # Change cubies positions
-    Positions['C1'] = Cor5
-    Positions['C3'] = Cor1
-    Positions['C5'] = Cor7
-    Positions['C7'] = Cor3
+    Positions['C1'], Positions['C3'], Positions['C5'], Positions['C7'] = Positions['C5'], Positions['C1'], Positions['C7'], Positions['C3']
+    Positions['E2'], Positions['E5'], Positions['E7'], Positions['E10'] = Positions['E5'], Positions['E10'], Positions['E2'], Positions['E7']
 
-    Positions['E2'] = Edg5
-    Positions['E5'] = Edg10
-    Positions['E7'] = Edg2
-    Positions['E10'] = Edg7
 
 def Rpr_move(x):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
@@ -182,15 +176,8 @@ def Rpr_move(x):
         Positions['E10'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
 
     # Change cubies positions
-    Positions['C1'] = Cor3
-    Positions['C3'] = Cor7
-    Positions['C5'] = Cor1
-    Positions['C7'] = Cor5
-
-    Positions['E2'] = Edg7
-    Positions['E5'] = Edg2
-    Positions['E7'] = Edg10
-    Positions['E10'] = Edg5
+    Positions['C1'], Positions['C3'], Positions['C5'], Positions['C7'] = Positions['C3'], Positions['C7'], Positions['C1'], Positions['C5']
+    Positions['E2'], Positions['E5'], Positions['E7'], Positions['E10'] = Positions['E7'], Positions['E2'], Positions['E10'], Positions['E5']
         
        
 
