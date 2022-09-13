@@ -74,6 +74,8 @@ CenW = compound(cubePyramids)
 CenW.size, CenW.pos = cubySize, vector(0,1+dis,0)
 CenB = compound(cubePyramids)
 CenB.size, CenB.pos = cubySize, vector(0,0,-1-dis)
+CenO = compound(cubePyramids)
+CenO.size, CenO.pos = cubySize, vector(-1-dis,0,0)
 
 # Creating Corner cubies
 Cor1 = compound(cubePyramids)
@@ -91,6 +93,8 @@ Cor2 = compound(cubePyramids)
 Cor2.size, Cor2.pos = cubySize, vector(-1-dis, 1+dis, 1+dis)
 Cor4 = compound(cubePyramids)
 Cor4.size, Cor4.pos = cubySize, vector(-1-dis, 1+dis, -1-dis)
+Cor6 = compound(cubePyramids)
+Cor6.size, Cor6.pos = cubySize, vector(-1-dis, -1-dis, 1+dis)
 
 # Creating Edge cubies
 Edg2 = compound(cubePyramids)
@@ -112,6 +116,10 @@ Edg8 = compound(cubePyramids)
 Edg8.size, Edg8.pos = cubySize, vector(-1-dis, 0, -1-dis)
 Edg11 = compound(cubePyramids)
 Edg11.size, Edg11.pos = cubySize, vector(0, -1-dis, -1-dis)
+Edg6 = compound(cubePyramids)
+Edg6.size, Edg6.pos = cubySize, vector(-1-dis, 0, 1+dis)
+Edg12 = compound(cubePyramids)
+Edg12.size, Edg12.pos = cubySize, vector(-1-dis, -1-dis, 0)
 
 
 # Positions names & dictionary
@@ -123,6 +131,7 @@ Positions = {
     'C2' : Cor2,
     'C4' : Cor4,
     'C8' : Cor8,
+    'C6' : Cor6,
 
     'E2' : Edg2,
     'E5' : Edg5,
@@ -132,7 +141,9 @@ Positions = {
     'E3' : Edg3,
     'E4' : Edg4,
     'E8' : Edg8,
-    'E11' : Edg11
+    'E11' : Edg11,
+    'E6' : Edg6,
+    'E12' : Edg12
 }
 
 
@@ -351,6 +362,41 @@ def Bpr_move(x):
     Positions['C3'], Positions['C4'], Positions['C7'], Positions['C8'] = Positions['C4'], Positions['C8'], Positions['C3'], Positions['C7']
     Positions['E3'], Positions['E7'], Positions['E8'], Positions['E11'] = Positions['E8'], Positions['E3'], Positions['E11'], Positions['E7']
 
+# L move
+def L_move(x):
+    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
+    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
+    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
+    for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
+        rate(150)
+        # Center move
+        CenO.rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+
+        # Corners moves
+        Positions['C2'].pos = vector(-1-dis, CorChangePos, CorBallancePos)
+        Positions['C2'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C4'].pos = vector(-1-dis, CorBallancePos, -CorChangePos)
+        Positions['C4'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C6'].pos = vector(-1-dis, -CorBallancePos, CorChangePos)
+        Positions['C6'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['C8'].pos = vector(-1-dis, -CorChangePos, -CorBallancePos)
+        Positions['C8'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+
+        # Edge moves
+        Positions['E4'].pos = vector(-1-dis, EdgDecPos, EdgIncPos)
+        Positions['E4'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E6'].pos = vector(-1-dis, -EdgIncPos, EdgDecPos)
+        Positions['E6'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E8'].pos = vector(-1-dis, EdgIncPos, -EdgDecPos)
+        Positions['E8'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+        Positions['E12'].pos = vector(-1-dis, -EdgDecPos, -EdgIncPos)
+        Positions['E12'].rotate(axis=vector(1,0,0), angle=convert_to_radius(1))
+    
+    # Change cubies positions
+    Positions['C2'], Positions['C4'], Positions['C6'], Positions['C8'] = Positions['C4'], Positions['C8'], Positions['C2'], Positions['C6']
+    Positions['E4'], Positions['E6'], Positions['E8'], Positions['E12'] = Positions['E8'], Positions['E4'], Positions['E12'], Positions['E6']
+
 # Button widgets
 button(bind=R_move, text="  R  ", background=color.red, color=color.black)
 scene.append_to_caption('\t')
@@ -365,6 +411,9 @@ scene.append_to_caption('\n\n')
 button(bind=B_move, text="  B  ", background=color.blue, color=color.white)
 scene.append_to_caption('\t')
 button(bind=Bpr_move, text="  B'  ", background=color.blue, color=color.white)
+scene.append_to_caption('\n\n')
+
+button(bind=L_move, text="  L  ", background=color.orange, color=color.black)
 
 
 while True:
