@@ -57,7 +57,7 @@ edges = {
 cubySize = vector(1,1,1)
 dis = .01 # distant size
 
-# Creatin cubes using 6 pyramids with 6 different colors
+# Creating cubies using 6 pyramids with 6 different colors
 cubePyramids = [
     pyramid(size=vector(0.5,1,1), pos=vector(0,0.5,0), axis=vector(0,-1,0), color=color.white),
     pyramid(size=vector(0.5,1,1), pos=vector(0,-0.5,0), axis=vector(0,1,0), color=color.yellow),
@@ -92,7 +92,6 @@ Cor7 = compound(cubePyramids)
 Cor7.size, Cor7.pos = cubySize, vector(1+dis,-1-dis,-1-dis)
 Cor8 = compound(cubePyramids)
 Cor8.size, Cor8.pos = cubySize, vector(-1-dis,-1-dis,-1-dis)
-
 Cor2 = compound(cubePyramids)
 Cor2.size, Cor2.pos = cubySize, vector(-1-dis, 1+dis, 1+dis)
 Cor4 = compound(cubePyramids)
@@ -109,7 +108,6 @@ Edg7 = compound(cubePyramids)
 Edg7.size, Edg7.pos = cubySize, vector(1+dis,0,-1-dis)
 Edg10 = compound(cubePyramids)
 Edg10.size, Edg10.pos = cubySize, vector(1+dis,-1-dis,0)
-
 Edg1 = compound(cubePyramids)
 Edg1.size, Edg1.pos = cubySize, vector(0, 1+dis, 1+dis)
 Edg3 = compound(cubePyramids)
@@ -159,12 +157,14 @@ Positions = {
 def convert_to_radius(degree):
     return degree * (np.pi / 180)
 
+# Changing axis positions ( we use them in loops for moving sides )
+CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+CorChangePositions = np.linspace(1+dis, -1-dis, 90)
+EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes (Edge Increase Position)
+EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes (Edge Decrease Position)
+
 # R move
 def R_move(turn):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -199,10 +199,6 @@ def R_move(turn):
 
 # R' move
 def Rpr_move(x):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -234,10 +230,6 @@ def Rpr_move(x):
 
 # U move
 def U_move(turn):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -273,10 +265,6 @@ def U_move(turn):
 
 # U' move
 def Upr_move(x):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -308,10 +296,6 @@ def Upr_move(x):
 
 # B move
 def B_move(turn):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -347,10 +331,6 @@ def B_move(turn):
 
 # B' move
 def Bpr_move(x):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -382,10 +362,6 @@ def Bpr_move(x):
 
 # L move
 def L_move(turn):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -421,10 +397,6 @@ def L_move(turn):
 
 # L' move
 def Lpr_move(x):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -456,10 +428,6 @@ def Lpr_move(x):
 
 # D move
 def D_move(turn):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -495,10 +463,6 @@ def D_move(turn):
 
 # D' move
 def Dpr_move(x):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -530,10 +494,6 @@ def Dpr_move(x):
 
 # F move
 def F_move(turn):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -569,10 +529,6 @@ def F_move(turn):
 
 # F' move
 def Fpr_move(x):
-    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
-    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
-    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
-    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -645,5 +601,6 @@ scene.append_to_caption('\t')
 button(bind=lambda: F_move(2), text="  F2  ", background=color.green, color=color.black)
 
 
+# preventing pauses in the program
 while True:
     pass
