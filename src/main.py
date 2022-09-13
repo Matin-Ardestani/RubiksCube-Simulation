@@ -160,7 +160,7 @@ def convert_to_radius(degree):
     return degree * (np.pi / 180)
 
 # R move
-def R_move(x):
+def R_move(turn):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -193,6 +193,9 @@ def R_move(x):
     # Change cubies positions
     Positions['C1'], Positions['C3'], Positions['C5'], Positions['C7'] = Positions['C5'], Positions['C1'], Positions['C7'], Positions['C3']
     Positions['E2'], Positions['E5'], Positions['E7'], Positions['E10'] = Positions['E5'], Positions['E10'], Positions['E2'], Positions['E7']
+    
+    if turn == 2:
+        R_move(1)
 
 # R' move
 def Rpr_move(x):
@@ -230,7 +233,7 @@ def Rpr_move(x):
     Positions['E2'], Positions['E5'], Positions['E7'], Positions['E10'] = Positions['E7'], Positions['E2'], Positions['E10'], Positions['E5']
 
 # U move
-def U_move(x):
+def U_move(turn):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -263,6 +266,10 @@ def U_move(x):
     # Change cubies positions
     Positions['C1'], Positions['C2'], Positions['C3'], Positions['C4'] = Positions['C3'], Positions['C1'], Positions['C4'], Positions['C2']
     Positions['E1'], Positions['E2'], Positions['E3'], Positions['E4'] = Positions['E2'], Positions['E3'], Positions['E4'], Positions['E1']
+    
+    # Recalling the Function for moves with a 2
+    if turn == 2:
+        U_move(1)
 
 # U' move
 def Upr_move(x):
@@ -300,7 +307,7 @@ def Upr_move(x):
     Positions['E1'], Positions['E2'], Positions['E3'], Positions['E4'] = Positions['E4'], Positions['E1'], Positions['E2'], Positions['E3']
 
 # B move
-def B_move(x):
+def B_move(turn):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -333,6 +340,10 @@ def B_move(x):
     # Change cubies positions
     Positions['C3'], Positions['C4'], Positions['C7'], Positions['C8'] = Positions['C7'], Positions['C3'], Positions['C8'], Positions['C4']
     Positions['E3'], Positions['E7'], Positions['E8'], Positions['E11'] = Positions['E7'], Positions['E11'], Positions['E3'], Positions['E8']
+    
+    # Recalling the Function for moves with a 2
+    if turn == 2:
+        B_move(1)
 
 # B' move
 def Bpr_move(x):
@@ -370,7 +381,7 @@ def Bpr_move(x):
     Positions['E3'], Positions['E7'], Positions['E8'], Positions['E11'] = Positions['E8'], Positions['E3'], Positions['E11'], Positions['E7']
 
 # L move
-def L_move(x):
+def L_move(turn):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -403,6 +414,10 @@ def L_move(x):
     # Change cubies positions
     Positions['C2'], Positions['C4'], Positions['C6'], Positions['C8'] = Positions['C4'], Positions['C8'], Positions['C2'], Positions['C6']
     Positions['E4'], Positions['E6'], Positions['E8'], Positions['E12'] = Positions['E8'], Positions['E4'], Positions['E12'], Positions['E6']
+    
+    # Recalling the Function for moves with a 2
+    if turn == 2:
+        L_move(1)
 
 # L' move
 def Lpr_move(x):
@@ -440,7 +455,7 @@ def Lpr_move(x):
     Positions['E4'], Positions['E6'], Positions['E8'], Positions['E12'] = Positions['E6'], Positions['E12'], Positions['E4'], Positions['E8']
 
 # D move
-def D_move(x):
+def D_move(turn):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -473,6 +488,10 @@ def D_move(x):
     # Change cubies positions
     Positions['C5'], Positions['C6'], Positions['C7'], Positions['C8'] = Positions['C6'], Positions['C8'], Positions['C5'], Positions['C7']
     Positions['E9'], Positions['E10'], Positions['E11'], Positions['E12'] = Positions['E12'], Positions['E9'], Positions['E10'], Positions['E11']
+
+    # Recalling the Function for moves with a 2
+    if turn == 2:
+        D_move(1)
 
 # D' move
 def Dpr_move(x):
@@ -510,7 +529,7 @@ def Dpr_move(x):
     Positions['E9'], Positions['E10'], Positions['E11'], Positions['E12'] = Positions['E10'], Positions['E11'], Positions['E12'], Positions['E9']
 
 # F move
-def F_move(x):
+def F_move(turn):
     CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
     CorChangePositions = np.linspace(1+dis, -1-dis, 90)
     EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
@@ -543,6 +562,10 @@ def F_move(x):
     # Change cubies positions
     Positions['C1'], Positions['C2'], Positions['C5'], Positions['C6'] = Positions['C2'], Positions['C6'], Positions['C1'], Positions['C5']
     Positions['E1'], Positions['E5'], Positions['E6'], Positions['E9'] = Positions['E6'], Positions['E1'], Positions['E9'], Positions['E5']
+
+    # Recalling the Function for moves with a 2
+    if turn == 2:
+        F_move(1)
 
 # F' move
 def Fpr_move(x):
@@ -583,31 +606,43 @@ def Fpr_move(x):
 button(bind=R_move, text="  R  ", background=color.red, color=color.black)
 scene.append_to_caption('\t')
 button(bind=Rpr_move, text="  R'  ", background=color.red, color=color.black)
+scene.append_to_caption('\t')
+button(bind=lambda: R_move(2), text="  R2  ", background=color.red, color=color.black)
 scene.append_to_caption('\n\n')
 
 button(bind=U_move, text="  U  ", background=color.white, color=color.black)
 scene.append_to_caption('\t')
 button(bind=Upr_move, text="  U'  ", background=color.white, color=color.black)
+scene.append_to_caption('\t')
+button(bind=lambda: U_move(2), text="  U2  ", background=color.white, color=color.black)
 scene.append_to_caption('\n\n')
 
 button(bind=B_move, text="  B  ", background=color.blue, color=color.white)
 scene.append_to_caption('\t')
 button(bind=Bpr_move, text="  B'  ", background=color.blue, color=color.white)
+scene.append_to_caption('\t')
+button(bind=lambda: B_move(2), text="  B2  ", background=color.blue, color=color.white)
 scene.append_to_caption('\n\n')
 
 button(bind=L_move, text="  L  ", background=color.orange, color=color.black)
 scene.append_to_caption('\t')
 button(bind=Lpr_move, text="  L'  ", background=color.orange, color=color.black)
+scene.append_to_caption('\t')
+button(bind=lambda: L_move(2), text="  L2  ", background=color.orange, color=color.black)
 scene.append_to_caption('\n\n')
 
 button(bind=D_move, text="  D  ", background=color.yellow, color=color.black)
 scene.append_to_caption('\t')
 button(bind=Dpr_move, text="  D'  ", background=color.yellow, color=color.black)
+scene.append_to_caption('\t')
+button(bind=lambda: D_move(2), text="  D2  ", background=color.yellow, color=color.black)
 scene.append_to_caption('\n\n')
 
 button(bind=F_move, text="  F  ", background=color.green, color=color.black)
 scene.append_to_caption('\t')
 button(bind=Fpr_move, text="  F'  ", background=color.green, color=color.black)
+scene.append_to_caption('\t')
+button(bind=lambda: F_move(2), text="  F2  ", background=color.green, color=color.black)
 
 
 while True:
