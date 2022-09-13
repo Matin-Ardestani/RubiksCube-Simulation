@@ -397,6 +397,41 @@ def L_move(x):
     Positions['C2'], Positions['C4'], Positions['C6'], Positions['C8'] = Positions['C4'], Positions['C8'], Positions['C2'], Positions['C6']
     Positions['E4'], Positions['E6'], Positions['E8'], Positions['E12'] = Positions['E8'], Positions['E4'], Positions['E12'], Positions['E6']
 
+# L' move
+def Lpr_move(x):
+    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
+    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
+    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
+    for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
+        rate(150)
+        # Center move
+        CenO.rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+
+        # Corners moves
+        Positions['C2'].pos = vector(-1-dis, CorBallancePos, CorChangePos)
+        Positions['C2'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C4'].pos = vector(-1-dis, CorChangePos, -CorBallancePos)
+        Positions['C4'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C6'].pos = vector(-1-dis, -CorChangePos, CorBallancePos)
+        Positions['C6'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['C8'].pos = vector(-1-dis, -CorBallancePos, -CorChangePos)
+        Positions['C8'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+
+        # Edge moves
+        Positions['E4'].pos = vector(-1-dis, EdgDecPos, -EdgIncPos)
+        Positions['E4'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E6'].pos = vector(-1-dis, EdgIncPos, EdgDecPos)
+        Positions['E6'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E8'].pos = vector(-1-dis, -EdgIncPos, -EdgDecPos)
+        Positions['E8'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+        Positions['E12'].pos = vector(-1-dis, -EdgDecPos, EdgIncPos)
+        Positions['E12'].rotate(axis=vector(1,0,0), angle=convert_to_radius(-1))
+    
+    # Change cubies positions
+    Positions['C2'], Positions['C4'], Positions['C6'], Positions['C8'] = Positions['C6'], Positions['C2'], Positions['C8'], Positions['C4']
+    Positions['E4'], Positions['E6'], Positions['E8'], Positions['E12'] = Positions['E6'], Positions['E12'], Positions['E4'], Positions['E8']
+
 # Button widgets
 button(bind=R_move, text="  R  ", background=color.red, color=color.black)
 scene.append_to_caption('\t')
@@ -414,6 +449,8 @@ button(bind=Bpr_move, text="  B'  ", background=color.blue, color=color.white)
 scene.append_to_caption('\n\n')
 
 button(bind=L_move, text="  L  ", background=color.orange, color=color.black)
+scene.append_to_caption('\t')
+button(bind=Lpr_move, text="  L'  ", background=color.orange, color=color.black)
 
 
 while True:
