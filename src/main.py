@@ -1,5 +1,4 @@
 # Importing neeeded packages
-from calendar import c
 from vpython import *
 import numpy as np
 
