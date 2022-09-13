@@ -544,6 +544,41 @@ def F_move(x):
     Positions['C1'], Positions['C2'], Positions['C5'], Positions['C6'] = Positions['C2'], Positions['C6'], Positions['C1'], Positions['C5']
     Positions['E1'], Positions['E5'], Positions['E6'], Positions['E9'] = Positions['E6'], Positions['E1'], Positions['E9'], Positions['E5']
 
+# F' move
+def Fpr_move(x):
+    CorBallancePositions = list(np.linspace(1+dis, np.sqrt(2), 45)) + list(np.linspace(np.sqrt(2), 1+dis, 45)) # for better movement we use 2 steps
+    CorChangePositions = np.linspace(1+dis, -1-dis, 90)
+    EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)) # for better movement we use 2 steps with 2 different sizes
+    EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes
+    for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
+        rate(150)
+        # Center move
+        CenG.rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+
+        # Corners moves
+        Positions['C1'].pos = vector(CorChangePos, CorBallancePos, 1+dis)
+        Positions['C1'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+        Positions['C2'].pos = vector(-CorBallancePos, CorChangePos, 1+dis)
+        Positions['C2'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+        Positions['C5'].pos = vector(CorBallancePos, -CorChangePos, 1+dis)
+        Positions['C5'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+        Positions['C6'].pos = vector(-CorChangePos, -CorBallancePos, 1+dis)
+        Positions['C6'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+
+        # Edge moves
+        Positions['E1'].pos = vector(-EdgIncPos, EdgDecPos, 1+dis)
+        Positions['E1'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+        Positions['E5'].pos = vector(EdgDecPos, EdgIncPos, 1+dis)
+        Positions['E5'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+        Positions['E6'].pos = vector(-EdgDecPos, -EdgIncPos, 1+dis)
+        Positions['E6'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+        Positions['E9'].pos = vector(EdgIncPos, -EdgDecPos, 1+dis)
+        Positions['E9'].rotate(axis=vector(0,0,1), angle=convert_to_radius(1))
+    
+    # Change cubies positions
+    Positions['C1'], Positions['C2'], Positions['C5'], Positions['C6'] = Positions['C5'], Positions['C1'], Positions['C6'], Positions['C2']
+    Positions['E1'], Positions['E5'], Positions['E6'], Positions['E9'] = Positions['E5'], Positions['E9'], Positions['E1'], Positions['E6']
+
 # Button widgets
 button(bind=R_move, text="  R  ", background=color.red, color=color.black)
 scene.append_to_caption('\t')
@@ -571,6 +606,8 @@ button(bind=Dpr_move, text="  D'  ", background=color.yellow, color=color.black)
 scene.append_to_caption('\n\n')
 
 button(bind=F_move, text="  F  ", background=color.green, color=color.black)
+scene.append_to_caption('\t')
+button(bind=Fpr_move, text="  F'  ", background=color.green, color=color.black)
 
 
 while True:
