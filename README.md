@@ -24,5 +24,8 @@ Then, Run ```main.py``` file and enjoy our simulation :)
 $ python src/main.py
 ```
 
+# Change Camera View
+To control camera view and see all cube's sides you need to hold the right-click on your mouse and move it.
+
 # More Information
 Social Media: [MatinArdestani](https://bioly.io/MatinArdestani)
