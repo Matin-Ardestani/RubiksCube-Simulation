@@ -163,7 +163,7 @@ EdgIncPositions = list(np.linspace(0, .5, 30)) + list(np.linspace(.5, 1+dis, 60)
 EdgDecPositions = list(np.linspace(1+dis, .5, 60)) + list(np.linspace(.5, 0, 30)) # for better movement we use 2 steps with 2 different sizes (Edge Decrease Position)
 
 # R move
-def R_move(turn):
+def r_move(turn):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -197,7 +197,7 @@ def R_move(turn):
         R_move(1)
 
 # R' move
-def Rpr_move(x):
+def rpr_move(x):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -228,7 +228,7 @@ def Rpr_move(x):
     Positions['E2'], Positions['E5'], Positions['E7'], Positions['E10'] = Positions['E7'], Positions['E2'], Positions['E10'], Positions['E5']
 
 # U move
-def U_move(turn):
+def u_move(turn):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -263,7 +263,7 @@ def U_move(turn):
         U_move(1)
 
 # U' move
-def Upr_move(x):
+def upr_move(x):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -294,7 +294,7 @@ def Upr_move(x):
     Positions['E1'], Positions['E2'], Positions['E3'], Positions['E4'] = Positions['E4'], Positions['E1'], Positions['E2'], Positions['E3']
 
 # B move
-def B_move(turn):
+def b_move(turn):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -329,7 +329,7 @@ def B_move(turn):
         B_move(1)
 
 # B' move
-def Bpr_move(x):
+def bpr_move(x):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -360,7 +360,7 @@ def Bpr_move(x):
     Positions['E3'], Positions['E7'], Positions['E8'], Positions['E11'] = Positions['E8'], Positions['E3'], Positions['E11'], Positions['E7']
 
 # L move
-def L_move(turn):
+def l_move(turn):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -395,7 +395,7 @@ def L_move(turn):
         L_move(1)
 
 # L' move
-def Lpr_move(x):
+def lpr_move(x):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -426,7 +426,7 @@ def Lpr_move(x):
     Positions['E4'], Positions['E6'], Positions['E8'], Positions['E12'] = Positions['E6'], Positions['E12'], Positions['E4'], Positions['E8']
 
 # D move
-def D_move(turn):
+def d_move(turn):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -461,7 +461,7 @@ def D_move(turn):
         D_move(1)
 
 # D' move
-def Dpr_move(x):
+def dpr_move(x):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -492,7 +492,7 @@ def Dpr_move(x):
     Positions['E9'], Positions['E10'], Positions['E11'], Positions['E12'] = Positions['E10'], Positions['E11'], Positions['E12'], Positions['E9']
 
 # F move
-def F_move(turn):
+def f_move(turn):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
@@ -527,7 +527,7 @@ def F_move(turn):
         F_move(1)
 
 # F' move
-def Fpr_move(x):
+def fpr_move(x):
     for CorBallancePos, CorChangePos, EdgIncPos, EdgDecPos in zip(CorBallancePositions, CorChangePositions, EdgIncPositions, EdgDecPositions): # all list lengths are 90 Bcause of rotatins
         rate(150)
         # Center move
